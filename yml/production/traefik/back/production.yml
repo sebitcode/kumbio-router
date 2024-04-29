@@ -9,8 +9,6 @@ services:
       context: .
       dockerfile: ./compose/production/traefik/back/Dockerfile
     image: kumbio_v2_production_back_traefik
-    depends_on:
-      - django
     volumes:
       - production_back_traefik:/etc/traefik/acme
     ports:

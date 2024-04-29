@@ -9,8 +9,6 @@ services:
       context: .
       dockerfile: ./compose/staging/traefik/Dockerfile
     image: kumbio_v2_staging_traefik
-    depends_on:
-      - django
     volumes:
       - staging_traefik:/etc/traefik/acme
     ports:
