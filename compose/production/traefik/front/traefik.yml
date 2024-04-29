@@ -31,7 +31,7 @@ http:
       rule: "Host(`app2.kumbio.com`)"
       entryPoints:
         - web-secure
-      service: react-app
+      service: kumbio-app
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
@@ -49,12 +49,12 @@ http:
     kumbio-app:
       loadBalancer:
         servers:
-          - url: http://react-app:3000
+          - url: http://kumbio-app:3000
 
     kumbio-booking:
       loadBalancer:
         servers:
-          - url: http://kumbio-booking:3030
+          - url: http://kumbio-booking:3000
 
 providers:
   # https://docs.traefik.io/master/providers/file/
