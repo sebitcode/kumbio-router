@@ -7,7 +7,7 @@ services:
   traefik:
     build:
       context: .
-      dockerfile: ./compose/production/traefik/back/Dockerfile
+      dockerfile: ../../../../compose/production/traefik/back/Dockerfile
     image: kumbio_v2_production_back_traefik
     volumes:
       - production_back_traefik:/etc/traefik/acme
