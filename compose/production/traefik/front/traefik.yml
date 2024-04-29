@@ -46,7 +46,7 @@ http:
         certResolver: letsencrypt
 
   services:
-    react-app:
+    kumbio-app:
       loadBalancer:
         servers:
           - url: http://react-app:3000

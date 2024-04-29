@@ -60,7 +60,7 @@ http:
         certResolver: letsencrypt
 
     kumbio-booking-secure-router:
-      rule: "Host(`testing.booking2.kumbio.com`)"
+      rule: "Host(`testing.booking.kumbio.com`)"
       entryPoints:
         - web-secure
       service: kumbio-booking
