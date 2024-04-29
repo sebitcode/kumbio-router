@@ -94,7 +94,7 @@ http:
     kumbio-booking:
       loadBalancer:
         servers:
-          - url: http://kumbio-booking:3030
+          - url: http://kumbio-booking:3000
 
 providers:
   # https://docs.traefik.io/master/providers/file/
