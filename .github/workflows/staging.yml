@@ -16,7 +16,7 @@ jobs:
         uses: fifsky/ssh-action@master
         with:
           command: |
-            cd ${{ secrets.STAGING_SSH_WORK_DIR }} && git checkout main && git pull origin main && cd deploys/staging/traefik && bash staging.sh && exit
+            cd ${{ secrets.SSH_WORK_DIR }} && git checkout main && git pull origin main && cd deploys/staging/traefik && bash staging.sh && exit
           host: ${{secrets.STAGING_SSH_HOST}}
-          user: ${{secrets.STAGING_SSH_USER}}
+          user: ${{secrets.SSH_USER}}
           key: ${{ secrets.STAGING_SSH_PRIVATE_KEY}}
