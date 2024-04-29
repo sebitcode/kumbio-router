@@ -99,5 +99,5 @@ http:
 providers:
   # https://docs.traefik.io/master/providers/file/
   file:
-    filename: /etc/traefik/config.yml
+    filename: /etc/traefik/traefik.yml
     watch: true
