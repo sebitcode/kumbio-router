@@ -1,0 +1,34 @@
+name: Deploy Production CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
+
+jobs:
+  deploy-back:
+    runs-on: ubuntu-latest
+    steps:
+      - name: deployment to production back
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            cd ${{ secrets.SSH_WORK_DIR }} && git checkout main && git pull origin main && cd deploys/production/traefik/back && bash production.sh && exit
+          host: ${{secrets.BACK_PRODUCTION_SSH_HOST}}
+          user: ${{secrets.SSH_USER}}
+          key: ${{ secrets.BACK_PRODUCTION_SSH_PRIVATE_KEY}}
+
+  deploy-front:
+    runs-on: ubuntu-latest
+    steps:
+      - name: deployment to production front
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            cd ${{ secrets.SSH_WORK_DIR }} && git checkout main && git pull origin main && cd deploys/production/traefik/front && bash production.sh && exit
+          host: ${{secrets.FRONT_PRODUCTION_SSH_HOST}}
+          user: ${{secrets.SSH_USER}}
+          key: ${{ secrets.FRONT_PRODUCTION_SSH_PRIVATE_KEY}}

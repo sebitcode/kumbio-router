@@ -1,0 +1,26 @@
+version: "3"
+
+volumes:
+  staging_traefik: {}
+
+services:
+  traefik:
+    build:
+      context: .
+      dockerfile: ./compose/staging/traefik/Dockerfile
+    image: kumbio_v2_staging_traefik
+    depends_on:
+      - django
+    volumes:
+      - staging_traefik:/etc/traefik/acme
+    ports:
+      - "0.0.0.0:80:80"
+      - "0.0.0.0:443:443"
+      - "0.0.0.0:5555:5555"
+    networks:
+      - kumbioNet
+
+networks:
+  kumbioNet:
+    driver: bridge
+    name: kumbionetwork

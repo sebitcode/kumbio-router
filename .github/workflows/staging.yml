@@ -1,0 +1,22 @@
+name: Deploy Staging CI/CD
+
+on:
+  push:
+    branches:
+      - qa
+
+env:
+  AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: deployment to staging
+        uses: fifsky/ssh-action@master
+        with:
+          command: |
+            cd ${{ secrets.STAGING_SSH_WORK_DIR }} && git checkout main && git pull origin main && cd deploys/staging/traefik && bash staging.sh && exit
+          host: ${{secrets.STAGING_SSH_HOST}}
+          user: ${{secrets.STAGING_SSH_USER}}
+          key: ${{ secrets.STAGING_SSH_PRIVATE_KEY}}
