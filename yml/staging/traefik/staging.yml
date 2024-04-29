@@ -6,8 +6,8 @@ volumes:
 services:
   traefik:
     build:
-      context: .
-      dockerfile: ../../../compose/staging/traefik/Dockerfile
+      context: ../../../
+      dockerfile: ./compose/staging/traefik/Dockerfile
     image: kumbio_v2_staging_traefik
     volumes:
       - staging_traefik:/etc/traefik/acme
