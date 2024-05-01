@@ -37,7 +37,7 @@ http:
         certResolver: letsencrypt
 
     kumbio-booking-secure-router:
-      rule: "Host(`booking2.kumbio.com`)"
+      rule: "Host(`agenda.kumbio.com`)"
       entryPoints:
         - web-secure
       service: kumbio-booking
