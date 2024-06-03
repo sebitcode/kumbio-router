@@ -28,7 +28,7 @@ certificatesResolvers:
 http:
   routers:
     web-secure-router:
-      rule: "Host(`app2.kumbio.com`)"
+      rule: "Host(`app.kumbio.com`)"
       entryPoints:
         - web-secure
       service: kumbio-app
