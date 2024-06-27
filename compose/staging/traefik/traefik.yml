@@ -75,6 +75,9 @@ http:
       service: kumbio-booking
       middlewares:
         - redirect-to-main-domain
+      tls:
+        # https://docs.traefik.io/master/routing/routers/#certresolver
+        certResolver: letsencrypt
   
   middlewares:
     redirect-to-main-domain:
