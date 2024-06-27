@@ -67,23 +67,12 @@ http:
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
-
-    catch-all-subdomain-secure-router:
-      rule: "HostRegexp(`{subdomain:[a-zA-Z0-9-]+}.kumbio.com`)"
-      entryPoints:
-        - web-secure
-      service: kumbio-booking
-      middlewares:
-        - redirect-to-main-domain
-      tls:
-        # https://docs.traefik.io/master/routing/routers/#certresolver
-        certResolver: letsencrypt
   
   middlewares:
     redirect-to-main-domain:
       redirectRegex:
-        regex: "^https?://(.*)\\.kumbio\\.com/(.*)"
-        replacement: "https://testing.agenda.kumbio.com/$2"
+        regex: "^https://dev.booking.kumbio.com/(.*)"
+        replacement: "https://testing.agenda.kumbio.com/${1}"
         permanent: true
 
   services:
