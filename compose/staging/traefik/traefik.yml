@@ -80,6 +80,9 @@ http:
         certResolver: letsencrypt
   
   middlewares:
+    csrf:
+      headers:
+        hostsProxyHeaders: ["X-CSRFToken"]
     redirect-to-main-domain:
       redirectRegex:
         regex: "^https://dev.booking.kumbio.com/(.*)"
