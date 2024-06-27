@@ -59,8 +59,17 @@ http:
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
 
-    kumbio-booking-secure-router:
+    kumbio-agenda-secure-router:
       rule: "Host(`testing.agenda.kumbio.com`)"
+      entryPoints:
+        - web-secure
+      service: kumbio-booking
+      tls:
+        # https://docs.traefik.io/master/routing/routers/#certresolver
+        certResolver: letsencrypt
+
+    kumbio-dev-booking-secure-router:
+      rule: "Host(`dev.booking.kumbio.com`)"
       entryPoints:
         - web-secure
       service: kumbio-booking
