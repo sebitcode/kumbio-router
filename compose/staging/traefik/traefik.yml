@@ -59,7 +59,7 @@ http:
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
 
-    kumbio-booking-secure-router:
+    kumbio-agenda-secure-router:
       rule: "Host(`testing.agenda.kumbio.com`)"
       entryPoints:
         - web-secure
@@ -68,12 +68,23 @@ http:
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
 
+    kumbio-dev-booking-secure-router:
+      rule: "Host(`dev.booking.kumbio.com`)"
+      entryPoints:
+        - web-secure
+      middlewares:
+        - redirect-to-main-domain
+      service: kumbio-booking
+      tls:
+        # https://docs.traefik.io/master/routing/routers/#certresolver
+        certResolver: letsencrypt
+  
   middlewares:
-    csrf:
-      # https://docs.traefik.io/master/middlewares/headers/#hostsproxyheaders
-      # https://docs.djangoproject.com/en/dev/ref/csrf/#ajax
-      headers:
-        hostsProxyHeaders: ["X-CSRFToken"]
+    redirect-to-main-domain:
+      redirectRegex:
+        regex: "^https://dev.booking.kumbio.com/(.*)"
+        replacement: "https://testing.agenda.kumbio.com/${1}"
+        permanent: true
 
   services:
     django:
