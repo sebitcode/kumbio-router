@@ -86,7 +86,7 @@ http:
     catchAll:
       redirectregex:
         regex: "^.*$"
-        replacement: "https://agenda.kumbio.com/${1}"
+        replacement: "https://testing.agenda.kumbio.com/${1}"
         permanent: false
 
   services:
