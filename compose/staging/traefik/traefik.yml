@@ -68,12 +68,26 @@ http:
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
 
+    catchAllRouter:
+      rule: "PathPrefix(`/`)"
+      entrypoints:
+        - web-secure
+      middlewares:
+        - catchAll
+      service: kumbio-booking
+      priority: 1
+      tls:
+        certResolver: letsencrypt
+        domains:
+          - main: "testing.agenda.kumbio.com"
+          - sans: "*.kumbio.com"
+  
   middlewares:
-    csrf:
-      # https://docs.traefik.io/master/middlewares/headers/#hostsproxyheaders
-      # https://docs.djangoproject.com/en/dev/ref/csrf/#ajax
-      headers:
-        hostsProxyHeaders: ["X-CSRFToken"]
+    catchAll:
+      redirectregex:
+        regex: "^.*$"
+        replacement: "https://agenda.kumbio.com/${1}"
+        permanent: false
 
   services:
     django:
