@@ -72,6 +72,8 @@ http:
       rule: "Host(`dev.booking.kumbio.com`)"
       entryPoints:
         - web-secure
+      middlewares:
+        - redirect-to-main-domain
       service: kumbio-booking
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
