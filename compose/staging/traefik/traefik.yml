@@ -67,6 +67,15 @@ http:
       tls:
         # https://docs.traefik.io/master/routing/routers/#certresolver
         certResolver: letsencrypt
+    
+    kumbio-wa-secure-router:
+      rule: "Host(`testing.wa.kumbio.com`)"
+      entryPoints:
+        - web-secure
+      service: kumbio-wa
+      tls:
+        # https://docs.traefik.io/master/routing/routers/#certresolver
+        certResolver: letsencrypt
 
     kumbio-dev-booking-secure-router:
       rule: "Host(`dev.booking.kumbio.com`)"
@@ -109,6 +118,11 @@ http:
       loadBalancer:
         servers:
           - url: http://kumbio-booking:3000
+    
+    kumbio-wa:
+      loadBalancer:
+        servers:
+          - url: http://kumbio-wa:3000
 
 providers:
   # https://docs.traefik.io/master/providers/file/
